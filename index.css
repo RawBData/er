@@ -519,7 +519,7 @@ textarea:focus {
   border: 1px solid #e6eef6;
   border-radius: 16px;
   box-shadow: 0 10px 24px rgba(2, 12, 27, 0.06);
-  max-width: 560px;
+  width: inherit;
   justify-self: start;
 }
 .contact-form .field {
