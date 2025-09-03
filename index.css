@@ -1,20 +1,19 @@
 
 /* ====== Base ====== */
 :root {
-  --muted-light: #8fa2b4;
-  --font-family: var(--font-family);
-
   --hero-top: #0c2a6b;
   --hero-mid: #006bce;
   --hero-bot: #00b7c7;
   --ink: #0e1b2a;
   --muted: #5b7186;
+  --muted-light: #8fa2b4;
   --card: #ffffff;
   --accent-blue: #1a91ff;
   --accent-teal: #00c2c9;
   --accent-orange: #ff8a1e;
   --radius: 16px;
   --shadow: 0 14px 36px rgba(2,12,27,0.12);
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -56,29 +55,44 @@ a { color: var(--accent-blue); text-decoration: none; }
 }
 .hero-inner { display:grid; grid-template-columns: 1fr; }
 .hero-copy { margin-inline: auto; max-width: 860px; }
-.hero h1 { letter-spacing: .2px; word-spacing: 1px; font-size: clamp(30px, 4.6vw, 48px); line-height: 1.12; margin: 0 0 14px; }
+.hero h1 { font-size: clamp(30px, 4.6vw, 48px); line-height: 1.12; margin: 0 0 14px; letter-spacing: .2px; word-spacing: 1px; }
 .hero .accent { color: var(--accent-orange); }
-.lead { letter-spacing: .15px; font-size: clamp(16px, 2.4vw, 19px); max-width: 760px; margin-inline: auto; opacity:.95; }
+.lead { font-size: clamp(16px, 2.4vw, 19px); max-width: 760px; margin-inline: auto; opacity:.95; letter-spacing: .15px; color: rgba(234, 244, 255, .92); }
 .cta-row { display:flex; gap:12px; margin-top:24px; flex-wrap: wrap; justify-content:center; }
 
 /* ====== Split (image + copy) ====== */
+/* About (2nd) section: white background */
 .split { background:#ffffff; padding: 72px 0; }
 .split-inner { display:grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items:center; }
-.split-alt .split-inner { grid-template-columns: 1fr 1.1fr; }
-.split .split-copy h2 { margin-top:0; font-size: clamp(22px, 3.2vw, 32px); }
-.tick-list { margin: 14px 0 0; padding-left: 18px; }
-.tick-list li { margin: 8px 0; }
+.split .split-copy h2 { margin-top:0; font-size: clamp(22px, 3.2vw, 32px); color:#0f172a; }
+.split p, .split li { color: var(--muted-light); }
+.tick-list { list-style: none; padding-left: 0; margin: 14px 0 0; }
+.tick-list li { position: relative; padding-left: 22px; margin: 8px 0; min-height: 1.25em; }
+.tick-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+/* About bullets match Services icon palette */
+.tick-list li:nth-child(4n+1)::before { background: #0ea5e9; } /* strategy blue */
+.tick-list li:nth-child(4n+2)::before { background: #22c55e; } /* clinical green */
+.tick-list li:nth-child(4n+3)::before { background: #f59e0b; } /* teams amber */
+.tick-list li:nth-child(4n+4)::before { background: #8b5cf6; } /* mentor violet */
 .split-media img { border-radius: 14px; box-shadow: var(--shadow); }
 
-/* ====== Services ====== */
-.services { background:#f7fafc;
-  padding: 84px 0; }
+/* ====== Services (3rd section) ====== */
+.services { background:#f7fafc; padding: 84px 0; }
 .section-head { text-align:center; max-width: 820px; margin: 0 auto 32px; }
-.section-head h2 { margin: 0 0 10px; font-size: clamp(24px, 3.2vw, 34px); }
+.section-head h2 { margin: 0 0 10px; font-size: clamp(24px, 3.2vw, 34px); color:#0f172a; }
 .section-head p { color: var(--muted); }
 .card-grid {
   display:grid; gap: 24px;
-  grid-template-columns: repeat(2, 1fr); /* 2x2 */
+  grid-template-columns: repeat(2, 1fr); /* 2x2 desktop */
 }
 .card {
   background: var(--card);
@@ -98,47 +112,62 @@ a { color: var(--accent-blue); text-decoration: none; }
 .card.teams    { --card-accent: #f59e0b; }   /* amber */
 .card.mentor   { --card-accent: #8b5cf6; }   /* violet */
 
-.card.strategy .card-icon { color: var(--card-accent); }
-.card.clinical .card-icon { color: var(--card-accent); }
-.card.teams .card-icon    { color: var(--card-accent); }
-.card.mentor .card-icon   { color: var(--card-accent); }
+.card.strategy .card-icon,
+.card.clinical .card-icon,
+.card.teams .card-icon,
+.card.mentor .card-icon { color: var(--card-accent); }
 
-.card h3 { margin: 6px 0 10px; font-size: 18px; }
-.card p { color: var(--muted); margin: 0 0 12px; }
+/* Only Services headings are black; rest is light grey */
+.card h3 { margin: 6px 0 10px; font-size: 18px; color: #0f172a; }
+.card p,
+.card li,
+.card a { color: var(--muted-light); }
+
+/* Centered bullets for Services lists */
 .card ul { list-style: none; padding-left: 0; margin: 0; }
-.card ul li { margin: 8px 0; padding-left: 20px; position: relative; }
+.card ul li { margin: 8px 0; padding-left: 22px; position: relative; min-height: 1.25em; }
 .card ul li::before {
-  content: ""; position: absolute; left: 0; top: 9px; width: 8px; height: 8px; border-radius: 50%;
-  background: var(--card-accent);   /* bullet matches icon color */
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--card-accent);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--card-accent) 20%, transparent);
 }
 
-/* ====== Approach ====== */
+/* ====== Approach (4th section) ====== */
+.split-alt { background:#f2f6fb; }
+.split-alt .split-inner { display:grid; grid-template-columns: 1fr 1.1fr; gap: 40px; align-items:center; }
+.split-alt h2 { color:#0f172a; }
+.split-alt p, .split-alt li { color: var(--muted-light); }
 .steps { padding-left: 18px; }
 .steps li { margin: 12px 0; }
-.split-alt { background:#f2f6fb; }
 
 /* ====== Personal ====== */
 .personal { padding: 64px 0; background:#fff; }
 .personal-inner { text-align:center; max-width: 820px; }
-.personal h2 { margin:0 0 8px; font-size: clamp(22px, 3.2vw, 30px); }
-.personal p { color:var(--muted); margin:0 auto 6px; max-width: 820px; }
+.personal h2 { margin:0 0 8px; font-size: clamp(22px, 3.2vw, 30px); color:#0f172a; }
+.personal p { color:var(--muted-light); margin:0 auto 6px; max-width: 820px; }
 
 /* ====== Contact ====== */
 .contact { padding: 84px 0; background:#f7fafc; }
 .contact-inner { display:grid; grid-template-columns: .9fr 1.1fr; gap: 32px; align-items:start; }
-.contact h3 { margin-top:0; }
-.muted { color: var(--muted); }
-.contact-list { list-style:none; padding:0; margin: 10px 0 0; }
-.contact-list li { margin: 10px 0; display:flex; align-items:center; gap: 10px; }
-.contact-form .field { margin-bottom: 16px; }
-label { display:block; font-size: 12px; color:#475569; margin-bottom:6px; }
-input, textarea {
-  width:100%; border:1px solid #d6e3ee; border-radius:12px; padding:12px 12px;
-  font: inherit; outline: none; background:#fff;
-}
-input:focus, textarea:focus { border-color: var(--accent-blue); box-shadow: 0 0 0 3px rgba(26,145,255,.12); }
-.contact .btn-primary { width: 100%; }
+.contact h3 { margin-top:0; color:#0f172a; }
+.muted { color: var(--muted-light); }
+
+.contact-list { list-style: none; padding: 0; margin: 12px 0 0; }
+.contact-item { display: grid; grid-template-columns: 32px 1fr; gap: 12px; align-items: start; margin: 12px 0; }
+.contact-icon .i { width: 22px; height: 22px; stroke: currentColor; display:block; }
+.contact-title { font-weight: 600; color: #0f172a; margin-bottom: 2px; }
+.contact-meta a { color: var(--accent-blue); }
+/* Icons colored using Services palette hues */
+.contact-item.email .contact-icon { color: #0ea5e9; }   /* blue */
+.contact-item.phone .contact-icon { color: #22c55e; }   /* green */
+.contact-item.linkedin .contact-icon { color: #8b5cf6; }/* violet */
 
 /* ====== Footer ====== */
 .site-footer { padding: 40px 0 52px; background:#fbfdff; border-top:1px solid #e9f2f9; color:#475569; }
@@ -159,40 +188,3 @@ input:focus, textarea:focus { border-color: var(--accent-blue); box-shadow: 0 0 
   .card-grid { grid-template-columns: 1fr; }
   .contact-inner { grid-template-columns: 1fr; }
 }
-
-
-/* Body copy colorization */
-.split p, .split-alt p, .split li, .personal p, .contact .muted { color: var(--muted-light); }
-.hero p, .hero a { color: rgba(234, 244, 255, .92); }
-
-/* Services: only headings black, the rest light grey */
-.services .card h3 { color: #0f172a; }
-.services .card p,
-.services .card li,
-.services .card a { color: var(--muted-light); }
-
-/* About bullets using 4 icon colors (cycle) */
-.tick-list { list-style: none; padding-left: 0; }
-.tick-list li { position: relative; padding-left: 20px; }
-.tick-list li::before {
-  content: ""; position:absolute; left:0; top: .65em; width:8px; height:8px; border-radius:50%;
-}
-.tick-list li:nth-child(4n+1)::before { background: #0ea5e9; } /* strategy blue */
-.tick-list li:nth-child(4n+2)::before { background: #22c55e; } /* clinical green */
-.tick-list li:nth-child(4n+3)::before { background: #f59e0b; } /* teams amber */
-.tick-list li:nth-child(4n+4)::before { background: #8b5cf6; } /* mentor violet */
-
-/* Approach section align with other sections' typography/colors */
-.split-alt h2 { color:#0f172a; }
-.split-alt p, .split-alt li { color: var(--muted-light); }
-
-/* Contact icons with three colors from services palette */
-.contact-item.email .contact-icon { color: #0ea5e9; }   /* blue */
-.contact-item.phone .contact-icon { color: #22c55e; }   /* green */
-.contact-item.linkedin .contact-icon { color: #8b5cf6; }/* violet */
-
-.contact-list { list-style: none; padding: 0; margin: 12px 0 0; }
-.contact-item { display: grid; grid-template-columns: 32px 1fr; gap: 12px; align-items: start; margin: 12px 0; }
-.contact-icon .i { width: 22px; height: 22px; stroke: currentColor; display:block; }
-.contact-title { font-weight: 600; color: #0f172a; margin-bottom: 2px; }
-.contact-meta a { color: var(--accent-blue); }
