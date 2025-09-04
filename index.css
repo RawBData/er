@@ -466,10 +466,14 @@ a {
     padding: 12px;
     border-radius: 12px;
     box-shadow: var(--shadow);
+
+    text-align: center;
   }
   .nav a {
     display: block;
     margin: 6px 0;
+
+    text-align: center;
   }
   .burger {
     display: block;
